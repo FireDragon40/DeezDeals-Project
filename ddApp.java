@@ -2,26 +2,14 @@
 import java.util.Scanner;
 
 import twitter4j.*;
-import twitter4j.conf.ConfigurationBuilder;
 
 public class ddApp {
     public static void main(String[] args) throws Exception {
-        // Builds configuration to get access via keys
-        String consAPI =  System.getenv("consumerAPI");
-        String apiSecret =  System.getenv("apiSecret");
-        String accToken =  System.getenv("accessToken");
-        String tokenSecret =  System.getenv("tokenSecret");
 
-        ConfigurationBuilder cb = new ConfigurationBuilder();
-        cb.setDebugEnabled(true)
-        .setOAuthConsumerKey(consAPI)
-        .setOAuthConsumerSecret(apiSecret)
-        .setOAuthAccessToken(accToken)
-        .setOAuthAccessTokenSecret(tokenSecret);
-        TwitterFactory tf = new TwitterFactory(cb.build());
+        twitterAuth auth = new twitterAuth(System.getenv("consumerAPI"), System.getenv("apiSecret"), 
+            System.getenv("accessToken"), System.getenv("tokenSecret"));
+        Twitter twitter = auth.authorize(); 
 
-        // Authorization
-        Twitter twitter = tf.getInstance();
         Query search = new Query();
 
         // What actually is searched for in the search bar in Twitter. Keep
