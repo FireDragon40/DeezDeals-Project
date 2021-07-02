@@ -16,6 +16,16 @@ public class ddApp {
         }
         
         Twitter twitter = auth.authorize(); 
+        // Checks to see if authorize method works
+        if (auth.authWorks == 1) 
+        {
+            System.out.println("Authorization Succesful!");
+        }
+        else
+        {
+            System.out.println("Authorization Failed");
+            System.exit(0);
+        }
         // Potentially add something to catch credentials that are invalid here
 
         Query search = new Query();
@@ -40,14 +50,16 @@ public class ddApp {
         search.setGeoCode(location, radius, units);
 
         QueryResult results = twitter.search(search);
+        int tweetsPulled = 0;
         for (Status status : results.getTweets()) 
         {
             System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
             System.out.print("-------------------------------------------------------------------\n");
+            tweetsPulled++;
         }
 
         // Displays amount of results pulled
-        System.out.println("Total amount of Tweets pulled: " + search.getCount());
+        System.out.println("Total amount of Tweets pulled: " + tweetsPulled);
 
 
 
