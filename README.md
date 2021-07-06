@@ -16,3 +16,5 @@ Version 0.01
 - The validSysVar method checks if the system variables exist on the computer and makes an array of those values for easy access.
 - The invalidSysVar returns the string of system variables that were not found on the computer.
 - The sysVarIsValid method returns true if all system variables are valid, or false if at least one of them does not exist on the computer.
+
+Erik Test
