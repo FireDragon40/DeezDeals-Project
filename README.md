@@ -17,4 +17,9 @@ Version 0.01
 - The invalidSysVar returns the string of system variables that were not found on the computer.
 - The sysVarIsValid method returns true if all system variables are valid, or false if at least one of them does not exist on the computer.
 
+Version 0.05
+ - Created the geoLocation class that helps find a latitude and longitude based on zip code.
+ - ddApp now takes in zip code, radius, and units of the radius for the search of a tweet.
+ - CSV file is provided free by https://simplemaps.com/data/us-zips, this file is what helps locate coordinates,
+
 Erik Test
