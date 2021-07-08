@@ -36,18 +36,34 @@ public class ddApp {
         System.out.println("Please enter what keyword you wish to look up");
         Scanner input = new Scanner(System.in);
         String keyWord = input.next();
-        System.out.println("-------------------------------------");
         search.setQuery(keyWord);
-        input.close();
-        
-        // Sets the number of tweets to return per page, up to a max of 100
         search.setCount(5); 
 
-        // Sets geoLocation for the tweets (Set on omaha) 
-        GeoLocation location = new GeoLocation(41.2565, -95.9345);
-        double radius = 100;
         Query.Unit units = Query.MILES;
-        search.setGeoCode(location, radius, units);
+        System.out.println("Please enter the zip code you wish to search in: ");
+        int zip = input.nextInt();
+
+        System.out.println("Please enter the radius from that zip code: ");
+        int rad = input.nextInt();
+
+        System.out.println("Is this in miles(m) or kilometers(km)?");
+        keyWord = input.next();
+        input.close();
+
+        if (keyWord.equals("m"))
+        {
+            units = Query.MILES;
+        }
+        else 
+        {
+            units = Query.KILOMETERS;
+        }
+
+        // Use geoLocation class
+        geoLocation where = new geoLocation(rad, units, zip);
+        // Set search based on our zip code and radius, aswell as units of the radius
+        search.setGeoCode(where.getLocation(), where.getRadius(), where.getUnits());
+
 
         QueryResult results = twitter.search(search);
         int tweetsPulled = 0;
@@ -60,6 +76,8 @@ public class ddApp {
 
         // Displays amount of results pulled
         System.out.println("Total amount of Tweets pulled: " + tweetsPulled);
+        System.out.println("The latitude is: " + where.getLatitude() + "\nThe longitude is: " 
+        + where.getLongitude());
 
 
 

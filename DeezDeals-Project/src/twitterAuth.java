@@ -25,6 +25,8 @@ public class twitterAuth
     // If there are invlaid system variables, they are recorded here
     private ArrayList <String> invalidSystemVariables;
 
+    public int authWorks = 0;
+
     // Instantiates the twitterAuth class, needs consumer api, api secret, account token, and token secret to function.
     public twitterAuth(String cAPI, String apiSec, String aTok, String tokSec)
     {
@@ -50,6 +52,7 @@ public class twitterAuth
 
         // Authorization
         Twitter twitter = tf.getInstance();
+        this.authWorks = 1;
         return twitter;
     }
     // Checks to see if the value input is a valid System Variable
