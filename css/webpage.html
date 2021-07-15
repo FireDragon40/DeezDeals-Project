@@ -103,23 +103,14 @@
             }
 
             function getResultsFromLocation(){
-                //let location = $("#location").val();
-                //let query = `./api/location/${location}`;
-                //console.log(query);
-                //axios.get(query)
-                //.then(result=>{
-                //    console.log(result.data);
-                //    $("#locations").empty();
-                //    $("#locations").text("");
-                //    result.data.forEach(i=>$("#locations").append(`<div><button onclick='selectPlace(${i.lat},${i.lon})'>Select</button>${i.display_name} </div>`))
-
-                //})
-                //.catch(err=>{
-                //    console.error(err);
-                //})
-                $("#resultsCallback").append("<div>result</div>")
-                $("#savedCallback").append("<div>saved result</div>")
+                $("#resultsCallback").append('<div><input type="checkbox" id="" />result</div>')
             }
+
+            $(".checkbox").change(function() {
+                if(this.checked) {
+                    $("#savedCallback").append("<div>saved result</div>")
+                }
+            });
         </script>
     </body>
 </html>
