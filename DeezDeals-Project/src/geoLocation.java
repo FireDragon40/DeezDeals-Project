@@ -20,9 +20,9 @@ public class geoLocation
     // Constructor  that gets all necessary parameters
     public geoLocation(double rad, Query.Unit uni, int zip) throws IOException 
     {
-        this.radius = rad;
+        this.radius = this.setRadius(rad);
         this.units = uni;
-        this.zipCode = zip;
+        this.zipCode = this.setZip(zip);
         this.getCoordinates();
     }
 
@@ -78,6 +78,26 @@ public class geoLocation
         }
     }
 
+    private double setRadius(double rad)
+    {
+        double result = 0;
+        if (rad > 0) 
+        {
+            result = rad;
+        }
+        return result;
+    }
+
+    private int setZip(int zip) 
+    {
+        int result = 0;
+        if (zip >= 10000 && zip < 100000)
+        {
+            result = zip;
+        }
+        return result;
+    }
+
     public Query setGCode(Query search) 
     {
         GeoLocation location = new GeoLocation(this.latitude, this.longitude);
@@ -109,6 +129,11 @@ public class geoLocation
     public double getLongitude() 
     {
         return this.longitude;
+    }
+
+    public int getZipCode() 
+    {
+        return this.zipCode;
     }
 
 
