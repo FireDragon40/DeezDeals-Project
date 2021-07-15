@@ -38,9 +38,10 @@
                     </div>
 
                     <div class="navbar-col3">
-                        <form class="example" onclick="getResultsFromLocation()">
-                            <div><input type="text" placeholder="Search.." id="search"></div>
-                            <div><button type="button"><i class="fa fa-search"></i></button></div>
+                        <form class="searchbar">
+                            <div><input class="searchbar" type="text" placeholder="Search.." id="search"></div>
+                            <!--type="submit" causes a refresh, making the result "flash"-->
+                            <div><button class="searchbar" type="submit" id="resultbut"><i class="fa fa-search"></i></button></div>
                         </form>
                     </div>
                 </div>
@@ -84,8 +85,7 @@
 
         <!-- Script tag to make the button show results under results section and saved under saved section-->
         <script>
-          
-            function plainAjax(url, callback){
+            /*function plainAjax(url, callback){
             var xhttp = new XMLHttpRequest();
             var called = false;
             xhttp.onreadystatechange = function () {
@@ -100,16 +100,30 @@
             };
                 xhttp.open("GET", url, true);
                 xhttp.send();
-            }
+            }*/
 
-            function getResultsFromLocation(){
-                $("#resultsCallback").append('<div><input type="checkbox" id="" />result</div>')
-            }
+            $(document).ready(function(){
+                //Checks for a result checkbox getting checked and appending to the saved results column
+                $("#bookmark").change(function(){
+                    if ($('input[type="checkbox"]').prop(":checked")){
+                        $("#savedCallback").append("<div>saved result</div>")
+                        console.log("A checkbox has been checked");
+                    }
+                    else{
+                        console.log("Nothing happened");
+                    }
+                });
 
-            $(".checkbox").change(function() {
-                if(this.checked) {
-                    $("#savedCallback").append("<div>saved result</div>")
-                }
+                //adds a result in the results column after pressing the search button
+                $("#resultbut").click(function(){
+                    $("#resultsCallback").append('<div><input type="checkbox" id="bookmark" />result</div>')
+                });
+            });
+
+            //Possible bookmark button
+            $("#bookmark").click(function() {
+                //if(this.checked) {
+                //}
             });
         </script>
     </body>
