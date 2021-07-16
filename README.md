@@ -20,6 +20,13 @@ Version 0.01
 Version 0.05
  - Created the geoLocation class that helps find a latitude and longitude based on zip code.
  - ddApp now takes in zip code, radius, and units of the radius for the search of a tweet.
- - CSV file is provided free by https://simplemaps.com/data/us-zips, this file is what helps locate coordinates,
+ - CSV file is provided free by https://simplemaps.com/data/us-zips, this file is what helps locate coordinates
+ - Created html and css file for what the website will look like once it is launched on the web.
+
+Version 0.1
+- Created test cases for geoLocation class.
+- Created a basic filter to ignore retweets on searches.
+- Added jQuery logic inside HTML logic.
+
 
 Erik Test
