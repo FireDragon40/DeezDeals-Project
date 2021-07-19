@@ -28,5 +28,8 @@ Version 0.1
 - Created a basic filter to ignore retweets on searches.
 - Added jQuery logic inside HTML logic.
 
+Version 0.11
+- Added javadoc into the java files.
+
 
 Erik Test
