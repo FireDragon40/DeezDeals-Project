@@ -2,8 +2,17 @@
 import java.util.Scanner;
 
 import twitter4j.*;
-
+/**
+ * The driver class that lets the user input a zipcode, radius, and key word to get a list of results
+ * from Twitter based on those parameters.
+ * @author Deez Deals
+ */ 
 public class ddApp {
+    
+    /** 
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
 
         // Insert system variable names into twitterAuth method.
