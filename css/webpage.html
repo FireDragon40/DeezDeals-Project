@@ -61,15 +61,19 @@
                 <div class="col1">
                     <h1>Filters</h1>
                     <div class="filters">
-                        <p>
-                        <input class="filter" type="checkbox" data-attribute="category" data-value="location" data-group="categories" /> 20 miles
-                        </p>
-                        <input class="filter" type="checkbox" data-attribute="category" data-value="location" data-group="categories" /> 10miles
+                        <div class="rangeslider">
+                            <input type="range" min="1" max="100" value="10"
+                                    class="myslider" id="sliderRange">
+                                    <p>Range: <span id="demo"></span> mile(s)</p>
+                        </div>
                         <p>
                         <input class="filter" type="checkbox" data-attribute="category" data-value="food" /> Food
                         </p>
-                        <input class="filter" type="checkbox" data-attribute="category" data-value="other" /> Other
+                        <input class="filter" type="checkbox" data-attribute="category" data-value="clothes" /> Clothes
+                    </p>
+                    <input class="filter" type="checkbox" data-attribute="category" data-value="other" /> Other
                         </div>
+                        
                         
                 </div>
                 <div class="col2">
@@ -125,6 +129,14 @@
                 //if(this.checked) {
                 //}
             });
+
+            var rangeslider = document.getElementById("sliderRange");
+            var output = document.getElementById("demo");
+            output.innerHTML = rangeslider.value;
+  
+            rangeslider.oninput = function() {
+                output.innerHTML = this.value;
+            }
         </script>
     </body>
 </html>
