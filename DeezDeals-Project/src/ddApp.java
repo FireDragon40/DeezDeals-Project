@@ -2,8 +2,17 @@
 import java.util.Scanner;
 
 import twitter4j.*;
-
+/**
+ * The driver class that lets the user input a zipcode, radius, and key word to get a list of results
+ * from Twitter based on those parameters.
+ * @author Deez Deals
+ */ 
 public class ddApp {
+    
+    /** 
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
 
         // Insert system variable names into twitterAuth method.
@@ -29,6 +38,7 @@ public class ddApp {
         // Potentially add something to catch credentials that are invalid here
 
         Query search = new Query();
+        
 
 
         // What actually is searched for in the search bar in Twitter. Keep
@@ -69,9 +79,13 @@ public class ddApp {
         int tweetsPulled = 0;
         for (Status status : results.getTweets()) 
         {
-            System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
-            System.out.print("-------------------------------------------------------------------\n");
-            tweetsPulled++;
+            // If status is NOT a retweet
+            if (!status.isRetweet())
+            {
+                System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
+                System.out.print("-------------------------------------------------------------------\n");
+                tweetsPulled++;
+            }
         }
 
         // Displays amount of results pulled
