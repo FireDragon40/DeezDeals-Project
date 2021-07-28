@@ -41,7 +41,7 @@
                         <form class="searchbar">
                             <div><input class="searchbar" type="text" placeholder="Search.." id="search"></div>
                             <!--type="submit" causes a refresh, making the result "flash"-->
-                            <div><button class="searchbar" type="button" id="resultbut"><i class="fa fa-search"></i></button></div>
+                            <div><button class="searchbar" type="submit" id="resultbut"><i class="fa fa-search"></i></button></div>
                         </form>
                     </div>
                 </div>
@@ -61,20 +61,30 @@
                 <div class="col1">
                     <h1>Filters</h1>
                     <div class="filters">
-                        <p>
-                        <input class="filter" type="checkbox" data-attribute="category" data-value="location" data-group="categories" /> 20 miles
-                        </p>
-                        <input class="filter" type="checkbox" data-attribute="category" data-value="location" data-group="categories" /> 10miles
+                        <div class="rangeslider">
+                            <input type="range" min="1" max="100" value="10"
+                                    class="myslider" id="sliderRange">
+                                    <p>Range: <span id="demo"></span> mile(s)</p>
+                        </div>
                         <p>
                         <input class="filter" type="checkbox" data-attribute="category" data-value="food" /> Food
                         </p>
-                        <input class="filter" type="checkbox" data-attribute="category" data-value="other" /> Other
+                        <input class="filter" type="checkbox" data-attribute="category" data-value="clothes" /> Clothes
+                    </p>
+                    <input class="filter" type="checkbox" data-attribute="category" data-value="other" /> Other
                         </div>
+                        
                         
                 </div>
                 <div class="col2">
                     <h1>Results</h1>
-                    <div id="resultsCallback"></div>
+                    <div id="resultsCallback">
+                        <div><input type="checkbox" id="bookmark" /></div>
+                        <div><input type="checkbox" id="bookmark" /></div>
+                        <div><input type="checkbox" id="bookmark" /></div>
+                        <div><input type="checkbox" id="bookmark" /></div>
+                        <div><input type="checkbox" id="bookmark" /></div>
+                    </div>
                 </div>
                 <div class="col3">
                     <h1>Saved</h1>
@@ -85,45 +95,41 @@
 
         <!-- Script tag to make the button show results under results section and saved under saved section-->
         <script>
-            /*function plainAjax(url, callback){
-            var xhttp = new XMLHttpRequest();
-            var called = false;
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                if(called) return;
-                callback(null, this.responseText)
-                called = true;
-                }
-                else{
-                callback("error");
-                }
-            };
-                xhttp.open("GET", url, true);
-                xhttp.send();
-            }*/
-
+            var num = 1;
             $(document).ready(function(){
                 //Checks for a result checkbox getting checked and appending to the saved results column
-                $("#bookmark").change(function(){
-                    if ($('input[type="checkbox"]').prop(":checked")){
-                        $("#savedCallback").append("<div>saved result</div>")
-                        console.log("A checkbox has been checked");
-                    }
-                    else{
-                        console.log("Nothing happened");
-                    }
-                });
-
                 //adds a result in the results column after pressing the search button
                 $("#resultbut").click(function(){
-                    $("#resultsCallback").append('<div><input type="checkbox" id="bookmark" />result</div>')
+                    //saved results dont appear when it comes from a jquery generated checkbox
+                    //jquery doesn't like dynamically created content, only static
+                    $("#resultsCallback").append('<div><input type="checkbox" id="checkbox_'+ num + '" />result</div>')
+                    num++;
+                    console.log('stop clicking');
+                });
+
+                $('#resultsCallback input').on("change", function(){
+                    if($(this).prop("checked")){
+                        $("#savedCallback").append('<div class="bookmark_'+ num + '">saved result</div>')
+                        console.log("A checkbox has been checked");
+                    }
                 });
             });
 
-            //Possible bookmark button
-            $("#bookmark").click(function() {
-                //if(this.checked) {
-                //}
+            $(document).on('click', ".bookmark_", function(e){
+                $(this).closest('div.bookmark_').remove();
+                console.log("bookmark removed");
+            });
+
+            var rangeslider = document.getElementById("sliderRange");
+            var output = document.getElementById("demo");
+            output.innerHTML = rangeslider.value;
+  
+            rangeslider.oninput = function() {
+                output.innerHTML = this.value;
+            }
+
+            $("form").submit(function( event ) {
+                event.preventDefault();
             });
         </script>
     </body>
