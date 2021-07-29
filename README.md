@@ -2,6 +2,8 @@
 
 DeezDeals is an app that will webscrape Twitter for different coupons or deals to get the user the best deal. The user can search for certain keywords such as location, food, clothing, and even get more specific with different brands or types.
 
+deezdeals.xyz
+
 Version 0.002
 
 - Created a new file (twitterAuth.java) in order to better organize the way the driver file will look in future versions.
@@ -17,10 +19,6 @@ Version 0.01
 - The invalidSysVar returns the string of system variables that were not found on the computer.
 - The sysVarIsValid method returns true if all system variables are valid, or false if at least one of them does not exist on the computer.
 
-Version 0.02
-- Sort buttons were made. The user has the option to sort by relevance and price low to high or price hight to low.
-- Filter has a slide bar to adjust the mile radius of where to look and to check boxes on if they want food or clothes.
-
 Version 0.05
  - Created the geoLocation class that helps find a latitude and longitude based on zip code.
  - ddApp now takes in zip code, radius, and units of the radius for the search of a tweet.
@@ -35,5 +33,10 @@ Version 0.1
 Version 0.11
 - Added javadoc into the java files.
 
+Version 0.2
+- Sort buttons were made. The user has the option to sort by relevance and price low to high or price hight to low.
+- Filter has a slide bar to adjust the mile radius of where to look and to check boxes on if they want food or clothes.
+- Setup nameservers and SSL/TLS for the website
+- Switched to apache tomcat for site deployment
 
 Erik Test
