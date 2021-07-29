@@ -17,6 +17,10 @@ Version 0.01
 - The invalidSysVar returns the string of system variables that were not found on the computer.
 - The sysVarIsValid method returns true if all system variables are valid, or false if at least one of them does not exist on the computer.
 
+Version 0.02
+- Sort buttons were made. The user has the option to sort by relevance and price low to high or price hight to low.
+- Filter has a slide bar to adjust the mile radius of where to look and to check boxes on if they want food or clothes.
+
 Version 0.05
  - Created the geoLocation class that helps find a latitude and longitude based on zip code.
  - ddApp now takes in zip code, radius, and units of the radius for the search of a tweet.
