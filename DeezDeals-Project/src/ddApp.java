@@ -38,16 +38,79 @@ public class ddApp {
         // Potentially add something to catch credentials that are invalid here
 
         Query search = new Query();
+        Scanner input = new Scanner(System.in);
         
 
 
         // What actually is searched for in the search bar in Twitter. Keep
         // in mind that you can change it based on Twitter API
-        System.out.println("Please enter what keyword you wish to look up");
-        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter what keyword you wish to look up. Input none "
+            + "if you don't want to use a keyword: ");
+        
         String keyWord = input.next();
-        search.setQuery(keyWord);
-        search.setCount(5); 
+        
+        // New fieldsSet class stuff goes here! Uses fieldsSet stuff
+
+
+
+        int typeofDeal = 0;
+        // Helpers to get user input
+        boolean kw = false;
+        boolean clothes = false;
+        boolean food = false;
+        boolean other = false;
+        while (true)
+        {
+             System.out.println("Are you looking for food, clothes, or other type of deals?\n"
+                + "1 for food, 2 for clothes, 3 for other, or 0 to stop adding values");
+            typeofDeal = input.nextInt();
+            
+            // Food parameter
+            if (typeofDeal == 1)
+            {
+                food = true;
+            }
+            
+            // Clothes parameter
+            else if (typeofDeal == 2)
+            {
+                clothes = true;
+            }
+            // Other parameter
+            else if (typeofDeal == 3)
+            {
+                other = true;
+            }
+            else if (typeofDeal == 0)
+            {
+                break;
+            }
+
+        }
+        // Check if user put none for a keyword
+        if (keyWord.equalsIgnoreCase("none"))
+        {
+            keyWord = "";
+
+        }
+        else
+        {
+            kw = true;
+        }
+
+        // Initialize the fieldsSet class to catch paramaters.
+        fieldsSet fieldsUsed = new fieldsSet(kw, food, clothes, other);
+
+        if (fieldsUsed.getKeyWordOn())
+        {
+            fieldsUsed.setKeyword(keyWord);
+        }
+
+        // Use fieldUsed to transfer keyword to the twitter4j ref library to create a search.
+        search.setQuery(fieldsUsed.getkeyWord());
+        
+        // Default tweets pulled we use is 5!
+        search.setCount(5);  
 
         Query.Unit units = Query.MILES;
         System.out.println("Please enter the zip code you wish to search in: ");
@@ -75,14 +138,15 @@ public class ddApp {
         search.setGeoCode(where.getLocation(), where.getRadius(), where.getUnits());
 
 
-        QueryResult results = twitter.search(search);
+        QueryResult results = twitter.search(search); // Transfer to scraper
         int tweetsPulled = 0;
         for (Status status : results.getTweets()) 
         {
             // If status is NOT a retweet
             if (!status.isRetweet())
             {
-                System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
+                System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText());
+                System.out.println(status.getCreatedAt());
                 System.out.print("-------------------------------------------------------------------\n");
                 tweetsPulled++;
             }
