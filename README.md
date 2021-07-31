@@ -38,5 +38,6 @@ Version 0.2
 - Filter has a slide bar to adjust the mile radius of where to look and to check boxes on if they want food or clothes.
 - Setup nameservers and SSL/TLS for the website
 - Switched to apache tomcat for site deployment
+- Created the fieldsSet.java class in order to gracefully grab paramaters from the web side (boxes that specify if user wants to search for clothes, food, or other deals) and pass those onto the java application. 
+- Created the scraper.java class that takes in paramaters from the fieldsSet class and attempts to develop a regular expression from the fileds passed in. Currently none of the regular expressions work, thus the only thing filtering the Twitter feed is the search setQuery class from the Twitter4j application.
 
-Erik Test
