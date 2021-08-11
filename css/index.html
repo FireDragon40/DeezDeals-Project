@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>
-            Twitter Webscraper
+            Twitter Web Scraper
         </title>
         <meta charset='utf-8'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -61,6 +61,7 @@
                 <div class="col1">
                     <h1>Filters</h1>
                     <div class="filters">
+                        <input type="number" placeholder="zip code" pattern="[0-9]{5}" title="Five digit zip code" />
                         <div class="rangeslider">
                             <input type="range" min="1" max="100" value="10"
                                     class="myslider" id="sliderRange">
@@ -78,46 +79,55 @@
                 </div>
                 <div class="col2">
                     <h1>Results</h1>
+                    <div class="dropdown">
+                        <button class="dropbtn">Sort by</button>
+                        <div class="dropdown-content">
+                          <a href="#">Price Low to High</a>
+                          <a href="#">Price High to Low</a>
+                          <a href="#">Relevance</a>
+                        </div>
+                      </div>
                     <div id="resultsCallback">
-                        <div><input type="checkbox" id="bookmark" /></div>
-                        <div><input type="checkbox" id="bookmark" /></div>
-                        <div><input type="checkbox" id="bookmark" /></div>
-                        <div><input type="checkbox" id="bookmark" /></div>
-                        <div><input type="checkbox" id="bookmark" /></div>
+                        <div><button type="button" id="bookmark">Bookmark</button></div>
+                        <div><button type="button" id="bookmark">Bookmark</button></div>
+                        <div><button type="button" id="bookmark">Bookmark</button></div>
+                        <div><button type="button" id="bookmark">Bookmark</button></div>
+                        <div><button type="button" id="bookmark">Bookmark</button></div>
+                        <div><button type="button" id="bookmark">Bookmark</button></div>
+                        <div><button type="button" id="bookmark">Bookmark</button></div>
+                        <div><button type="button" id="bookmark">Bookmark</button></div>
+                        <div><button type="button" id="bookmark">Bookmark</button></div>
+                        <div><button type="button" id="bookmark">Bookmark</button></div>
                     </div>
                 </div>
                 <div class="col3">
                     <h1>Saved</h1>
-                    <div id="savedCallback"></div>
+                    <div id="savedCallback">
+                   		<div><button type="button" id="rbookmark">Remove Bookmark</button></div>
+                    	<div><button type="button" id="rbookmark">Remove Bookmark</button></div>
+                    	<div><button type="button" id="rbookmark">Remove Bookmark</button></div>
+                    	<div><button type="button" id="rbookmark">Remove Bookmark</button></div>
+                    	<div><button type="button" id="rbookmark">Remove Bookmark</button></div>
+                    	<div><button type="button" id="rbookmark">Remove Bookmark</button></div>
+                    	<div><button type="button" id="rbookmark">Remove Bookmark</button></div>
+                    	<div><button type="button" id="rbookmark">Remove Bookmark</button></div>
+                    	<div><button type="button" id="rbookmark">Remove Bookmark</button></div>
+                    	<div><button type="button" id="rbookmark">Remove Bookmark</button></div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Script tag to make the button show results under results section and saved under saved section-->
         <script>
-            var num = 1;
             $(document).ready(function(){
                 //Checks for a result checkbox getting checked and appending to the saved results column
+                $("#bookmark").change(function(){
+                });
+
                 //adds a result in the results column after pressing the search button
                 $("#resultbut").click(function(){
-                    //saved results dont appear when it comes from a jquery generated checkbox
-                    //jquery doesn't like dynamically created content, only static
-                    $("#resultsCallback").append('<div><input type="checkbox" id="checkbox_'+ num + '" />result</div>')
-                    num++;
-                    console.log('stop clicking');
                 });
-
-                $('#resultsCallback input').on("change", function(){
-                    if($(this).prop("checked")){
-                        $("#savedCallback").append('<div class="bookmark_'+ num + '">saved result</div>')
-                        console.log("A checkbox has been checked");
-                    }
-                });
-            });
-
-            $(document).on('click', ".bookmark_", function(e){
-                $(this).closest('div.bookmark_').remove();
-                console.log("bookmark removed");
             });
 
             var rangeslider = document.getElementById("sliderRange");
@@ -127,10 +137,6 @@
             rangeslider.oninput = function() {
                 output.innerHTML = this.value;
             }
-
-            $("form").submit(function( event ) {
-                event.preventDefault();
-            });
         </script>
     </body>
 </html>
