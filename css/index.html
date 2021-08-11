@@ -86,33 +86,44 @@
                           <a href="#">Price High to Low</a>
                           <a href="#">Relevance</a>
                         </div>
+                       
                       </div>
                     <div id="resultsCallback">
-                        <div><button type="button" id="bookmark">Bookmark</button></div>
-                        <div><button type="button" id="bookmark">Bookmark</button></div>
-                        <div><button type="button" id="bookmark">Bookmark</button></div>
-                        <div><button type="button" id="bookmark">Bookmark</button></div>
-                        <div><button type="button" id="bookmark">Bookmark</button></div>
-                        <div><button type="button" id="bookmark">Bookmark</button></div>
-                        <div><button type="button" id="bookmark">Bookmark</button></div>
-                        <div><button type="button" id="bookmark">Bookmark</button></div>
-                        <div><button type="button" id="bookmark">Bookmark</button></div>
-                        <div><button type="button" id="bookmark">Bookmark</button></div>
+                        <div><button type="button" id="bookmark">Bookmark</button>
+                        	<div id="btext"></div>
+                        </div>
+                        <div><button type="button" id="bookmark">Bookmark</button>
+                        	<div id="btext"></div>
+                        </div>
+                        <div><button type="button" id="bookmark">Bookmark</button>
+                        	<div id="btext"></div>
+                        </div>
+                        <div><button type="button" id="bookmark">Bookmark</button>
+                        	<div id="btext"></div>
+                        </div>
+                        <div><button type="button" id="bookmark">Bookmark</button>
+                        	<div id="btext"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="col3">
                     <h1>Saved</h1>
                     <div id="savedCallback">
-                   		<div><button type="button" id="rbookmark">Remove Bookmark</button></div>
-                    	<div><button type="button" id="rbookmark">Remove Bookmark</button></div>
-                    	<div><button type="button" id="rbookmark">Remove Bookmark</button></div>
-                    	<div><button type="button" id="rbookmark">Remove Bookmark</button></div>
-                    	<div><button type="button" id="rbookmark">Remove Bookmark</button></div>
-                    	<div><button type="button" id="rbookmark">Remove Bookmark</button></div>
-                    	<div><button type="button" id="rbookmark">Remove Bookmark</button></div>
-                    	<div><button type="button" id="rbookmark">Remove Bookmark</button></div>
-                    	<div><button type="button" id="rbookmark">Remove Bookmark</button></div>
-                    	<div><button type="button" id="rbookmark">Remove Bookmark</button></div>
+                   		<div><button type="button" id="rbookmark">Remove Bookmark</button>
+                    		<div id="rbtext"></div>
+                    	</div>
+                    	<div><button type="button" id="rbookmark">Remove Bookmark</button>
+                    		<div id="rbtext"></div>
+                    	</div>
+                    	<div><button type="button" id="rbookmark">Remove Bookmark</button>
+                    		<div id="rbtext"></div>
+                    	</div>
+                    	<div><button type="button" id="rbookmark">Remove Bookmark</button>
+                    		<div id="rbtext"></div>
+                    	</div>
+                    	<div><button type="button" id="rbookmark">Remove Bookmark</button>
+                    		<div id="rbtext"></div>
+                    	</div>
                     </div>
                 </div>
             </div>
@@ -121,12 +132,31 @@
         <!-- Script tag to make the button show results under results section and saved under saved section-->
         <script>
             $(document).ready(function(){
+            	$("#search")
                 //Checks for a result checkbox getting checked and appending to the saved results column
-                $("#bookmark").change(function(){
-                });
-
                 //adds a result in the results column after pressing the search button
                 $("#resultbut").click(function(){
+                    //saved results dont appear when it comes from a jquery generated checkbox
+                    //jquery doesn't like dynamically created content, only static
+                });
+
+            	//Saving a result into bookmark
+                $('#resultsCallback button').click(function(){
+                	$("button").each(function(i){
+                		if(!$('#rbtext').val()){
+                           	document.getElementById("rbtext").innerHTML = "test result";                			
+                		}
+                	});
+                	console.log("A bookmark button has been pressed");
+                });
+            	
+                $('#savedCallback button').click(function(){
+                	$("button").each(function(index,element){
+                		if($('#rbtext').val().length >= 0){
+                           	document.getElementById("rbtext").innerHTML = "";                			
+                		}
+                	});
+                	console.log("A bookmark has been removed");
                 });
             });
 
@@ -137,6 +167,10 @@
             rangeslider.oninput = function() {
                 output.innerHTML = this.value;
             }
+            
+            $("form").submit(function( event ) {
+                event.preventDefault();
+            });
         </script>
     </body>
 </html>
