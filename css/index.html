@@ -1,16 +1,17 @@
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>
-            Twitter Web Scraper
+            Twitter Webscraper
         </title>
+        
         <meta charset='utf-8'>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link href="css/layout.css" rel="stylesheet"/>
-        <link href="css/navbar.css" rel="stylesheet"/>
-        <link href="css/profile-navbar.css" rel="stylesheet"/>
-        <script src="app.js" type="text/javascript"></script>
+        <link href="./css/layout.css" type="text/css" rel="stylesheet"/>
+        <link href="./css/navbar.css" type="text/css" rel="stylesheet"/>
+        <link href="./css/profile-navbar.css" type="text/css" rel="stylesheet"/>
     </head>
     <body>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -38,10 +39,10 @@
                     </div>
 
                     <div class="navbar-col3">
-                        <form class="searchbar">
-                            <div><input class="searchbar" type="text" placeholder="Search.." id="search"></div>
-                            <!--type="submit" causes a refresh, making the result "flash"-->
-                            <div><button class="searchbar" type="submit" id="resultbut"><i class="fa fa-search"></i></button></div>
+                        <form action="${pageContext.request.contextPath}/searchServlet" class="searchbar" method="get">
+                            <input class="searchbar" type="text" placeholder="Search.." id="search" name="searchinput">
+                            
+                            <input type="submit" class="searchbar" name="submit" value="search">
                         </form>
                     </div>
                 </div>
@@ -57,7 +58,7 @@
                 </div>
             </div>
             
-            <div class="mainbody" id="mainbody">
+             <div class="mainbody" id="mainbody">
                 <div class="col1">
                     <h1>Filters</h1>
                     <div class="filters">
@@ -65,20 +66,20 @@
                         <div class="rangeslider">
                             <input type="range" min="1" max="100" value="10"
                                     class="myslider" id="sliderRange">
-                                    <p>Range: <span id="demo"></span> mile(s)</p>
+                            <p>Range: <span id="demo"></span> mile(s)</p>
                         </div>
                         <p>
                         <input class="filter" type="checkbox" data-attribute="category" data-value="food" /> Food
                         </p>
                         <input class="filter" type="checkbox" data-attribute="category" data-value="clothes" /> Clothes
-                    </p>
-                    <input class="filter" type="checkbox" data-attribute="category" data-value="other" /> Other
-                        </div>
-                        
-                        
+                   		<p>
+                   		<input class="filter" type="checkbox" data-attribute="category" data-value="other" /> Other
+                   		</p>
+                    </div>
                 </div>
                 <div class="col2">
                     <h1>Results</h1>
+
                     <div class="dropdown">
                         <button class="dropbtn">Sort by</button>
                         <div class="dropdown-content">
@@ -86,11 +87,12 @@
                           <a href="#">Price High to Low</a>
                           <a href="#">Relevance</a>
                         </div>
-                       
-                      </div>
+                        <p></p>
+                    </div>
+                      
                     <div id="resultsCallback">
                         <div><button type="button" id="bookmark">Bookmark</button>
-                        	<div id="btext"></div>
+                        	<div id="btext">placeholder</div>
                         </div>
                         <div><button type="button" id="bookmark">Bookmark</button>
                         	<div id="btext"></div>
@@ -104,12 +106,13 @@
                         <div><button type="button" id="bookmark">Bookmark</button>
                         	<div id="btext"></div>
                         </div>
+
                     </div>
                 </div>
                 <div class="col3">
                     <h1>Saved</h1>
                     <div id="savedCallback">
-                   		<div><button type="button" id="rbookmark">Remove Bookmark</button>
+                    	<div><button type="button" id="rbookmark">Remove Bookmark</button>
                     		<div id="rbtext"></div>
                     	</div>
                     	<div><button type="button" id="rbookmark">Remove Bookmark</button>
@@ -132,31 +135,22 @@
         <!-- Script tag to make the button show results under results section and saved under saved section-->
         <script>
             $(document).ready(function(){
-            	$("#search")
-                //Checks for a result checkbox getting checked and appending to the saved results column
-                //adds a result in the results column after pressing the search button
-                $("#resultbut").click(function(){
-                    //saved results dont appear when it comes from a jquery generated checkbox
-                    //jquery doesn't like dynamically created content, only static
-                });
-
             	//Saving a result into bookmark
                 $('#resultsCallback button').click(function(){
                 	$("button").each(function(i){
                 		if(!$('#rbtext').val()){
-                           	document.getElementById("rbtext").innerHTML = "test result";                			
+                           	document.getElementById("rbtext").innerHTML = $("#btext").val();                			
                 		}
                 	});
-                	console.log("A bookmark button has been pressed");
                 });
             	
+            	//Removing bookmark
                 $('#savedCallback button').click(function(){
                 	$("button").each(function(index,element){
                 		if($('#rbtext').val().length >= 0){
                            	document.getElementById("rbtext").innerHTML = "";                			
                 		}
                 	});
-                	console.log("A bookmark has been removed");
                 });
             });
 
@@ -167,10 +161,6 @@
             rangeslider.oninput = function() {
                 output.innerHTML = this.value;
             }
-            
-            $("form").submit(function( event ) {
-                event.preventDefault();
-            });
         </script>
     </body>
 </html>
