@@ -134,12 +134,13 @@
 
         <!-- Script tag to make the button show results under results section and saved under saved section-->
         <script>
+        	var bookmark = $("#btext").first().text();
             $(document).ready(function(){
             	//Saving a result into bookmark
                 $('#resultsCallback button').click(function(){
                 	$("button").each(function(i){
                 		if(!$('#rbtext').val()){
-                           	document.getElementById("rbtext").innerHTML = $("#btext").val();                			
+                			document.getElementById("rbtext").innerHTML = $('#btext').text();    			
                 		}
                 	});
                 });
