@@ -32,25 +32,24 @@ public class DeezServlet extends HttpServlet {
 	
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    	String searchForm = "frontend/index.jsp";
+    	String searchForm = "index.jsp";
     	RequestDispatcher dispatcher = request.getRequestDispatcher(searchForm);
     	dispatcher.forward(request, response);
     	
     	String searchresult = request.getParameter("searchinput");
         //response content type
         //response.setContentType("text/html");
-
+    	
+    	//String apiresult = "";
+    	
         //printwriter to write to html
         PrintWriter out = response.getWriter();
-        //out.println("<html>");
-        //out.println("<div>" + searchresult + "</div>");
-        //out.println("test");
-        //out.println("</html>");
-        
+        out.println("<html>");
         out.println("<div>" + searchresult + "</div>");
         //response.sendRedirect("index.jsp?username=" + searchresult);
         //response.getWriter().write(searchresult);
-        out.println("<html> servlet is working </html>");
+        out.println("</html>");
+        out.flush();
 
     }
     
