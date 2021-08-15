@@ -41,3 +41,9 @@ Version 0.2
 - Created the fieldsSet.java class in order to gracefully grab paramaters from the web side (boxes that specify if user wants to search for clothes, food, or other deals) and pass those onto the java application. 
 - Created the scraper.java class that takes in paramaters from the fieldsSet class and attempts to develop a regular expression from the fileds passed in. Currently none of the regular expressions work, thus the only thing filtering the Twitter feed is the search setQuery class from the Twitter4j application.
 
+Version 0.5
+- Created the ddWebApp.java class that simplifies the authentication, pulling, and array creation of the tweets pulled from a search parameter.
+- Added a simple piece to the DeesServlet.java class that glues the functionality of the Tomcat server and the java project
+- Made changes to the webpage to simplify the process of creating bookmarks, but it still unfortunatly does not work.
+- Servlet now creates a webpage with the latest 5 results based on the keyword. 
+
