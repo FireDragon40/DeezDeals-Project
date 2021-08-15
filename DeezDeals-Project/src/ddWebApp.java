@@ -4,19 +4,37 @@ import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
 
 
-
+/**
+ * Class that facilitates the creation of a search term on the website with a keyword.
+ * @author Deez Deals
+ */
 public class ddWebApp {
     
-
+    /**
+     * Has the array list of the results generated from the twitter search results.
+     */
     private ArrayList <String> resultArray;
 
+    /**
+     * An instance of the Twitter twitter4j class that allows us to authenitcate with the server.
+     */
     private Twitter twitter;
  
+    /**
+     * An instance of the Query twitter4j class that allows us to build the search paramater for the twitter scrape.
+     */
     private Query search;
 
+    /**
+     * The maximum amount of tweets that will be pulled in one search.
+     */
     public final int amountofResults = 5;
 
 
+    /**
+     * Constructor that takes in the keyword that will be used to filter results.
+     * @param searchWord The word that the user want to search for in the tweets.
+     */
     public ddWebApp(String searchWord)
     {
         this.resultArray = new ArrayList<String>();
@@ -27,7 +45,10 @@ public class ddWebApp {
 
     }
 
-    //Authenticate
+    /**
+     * Private method that simply authenticates the Twitter credentials using
+     * the hidden api_keys class.
+     */
     private void authenticateTwitter()
     {
         api_keys helper = new api_keys();
@@ -43,8 +64,11 @@ public class ddWebApp {
         this.twitter = tf.getInstance();
     }
 
-    // Set search query
-
+    
+    /**
+     * Sets up the query so that in can search the keyword passed in.
+     * @param keyWord The string that is being used for the search query.
+     */
     private void setSearch(String keyWord)
     {
         // Use fieldUsed to transfer keyword to the twitter4j ref library to create a search.
@@ -56,9 +80,13 @@ public class ddWebApp {
     }
 
 
-    // Set Up query
+    
 
-
+    /**
+     * Creates the Array List of the results from the twitter scrape.
+     * @return The ArrayList <String> of the tweet results matcihing the search keyword.
+     * @throws TwitterException To catch an invalid search.
+     */
     public ArrayList <String> getArrayResults() throws TwitterException
     {
         QueryResult results = twitter.search(this.search); // Transfer to scraper

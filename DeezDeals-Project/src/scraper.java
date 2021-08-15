@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+
 import twitter4j.*; 
 
 /**
@@ -13,7 +14,7 @@ public class scraper {
     /**
      * The fieldSet with all the paramaters passed into it. 
      */
-    private fieldsSet fields;
+    private fSets fields;
 
     /**
      * The search query (twitter4j package) that allows us to filter by various manners.
@@ -30,8 +31,13 @@ public class scraper {
      */
     Pattern regex;
 
+    /**
+     * Contains the array list of the tweets that will be scraped.
+     */
     private ArrayList <String> tweetstoStting;
-
+    /**
+     * The Twitter class type that authenticates the twitter API credentials.
+     */
     private Twitter authentiocation; 
 
     /**
@@ -46,7 +52,7 @@ public class scraper {
      * @param srch A twitter4j Query that will be used to filter tweets by keyword. 
      * @param count The amount of tweets (max of 100) that will be pulled from the Twitter API.
      */
-    public scraper(fieldsSet f, Query srch, int count, Twitter auth)
+    public scraper(fSets f, Query srch, int count, Twitter auth)
     {
         this.fields = f;
         this.search = srch;
@@ -58,7 +64,9 @@ public class scraper {
 
 
     }
-
+    /**
+     * Sets the keyword passed in.
+     */
     private void setKeyWord()
     {
         if (this.fields.getKeyWordOn())
@@ -122,7 +130,7 @@ public class scraper {
      * Gets the fieldSet object currently in the class.
      * @return The fieldSet class currently in the scraper class.
      */
-    public fieldsSet getFieldSet()
+    public fSets getFieldSet()
     {
         return this.fields;
     }
